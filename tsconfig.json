@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": "scr",
+    "jsx": "react",
+    "lib": [
+      "es2015",
+      "dom",
+      "es2022.bigint"
+    ],
+    "target": "ES2022",
+    "moduleResolution": "Node"
+  },
+  "include": [
+    "scr"
+  ]
+}
