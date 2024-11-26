@@ -8,34 +8,49 @@ export default function TodoList() {
 
     const [todos, setTodos] = React.useState([])
 
-    const addTodo = useCallback(() => {
+    const addTask = useCallback(() => {
         const nextId = todos.length > 0 ? todos[todos.length - 1].id + 1 : 1;
+        console.log('list add after', [...todos, {id: nextId, text: '', isCompleted: false}])
         setTodos([...todos, {id: nextId, text: '', isCompleted: false}]);
     }, [todos])
 
-    const deleteTodo = useCallback(id => {
+    const deleteTask = useCallback(id => {
         console.log('delete', id)
         setTodos(todos.filter(todo => todo.id !== id))
     }, [todos])
 
-    const handleItemValueChange = useCallback((id, value) => {
-        console.log('list change', id, value)
-        setTodos(todos.map(todo => todo.id === id ? {...todo, text: value} : todo))
+    const handlerTaskUpdate = useCallback((task) => {
+        console.log('list change', task)
+        console.log('list change after', todos, todos.map(todo => todo.id === task.id ? task : todo))
+        setTodos(todos.map(todo => todo.id === task.id ? task : todo))
     }, [todos])
 
     return (
         <>
-            <button onClick={addTodo}>Add</button>
-            {todos.map(todo => <TodoListItem
-                    key={todo.id}
-                    itemId={todo.id}
-                    initValue={todo.text}
-                    onDelete={deleteTodo}
-                    onChange={handleItemValueChange}
-                />
-            )}
+            <button onClick={addTask}>Add Task</button>
+            <div>
+                <p>未完成列表</p>
+                {todos.filter(todo => !todo.isCompleted)
+                    .map(todo => <TodoListItem
+                        key={todo.id}
+                        task={todo}
+                        onDelete={deleteTask}
+                        onChange={handlerTaskUpdate}
+                    />
+                )}
+            </div>
 
-            {todos.map(todo => <div key={todo.id}>{todo.text}</div>)}
+            <div>
+                <p>完成列表</p>
+                {todos.filter(todo => todo.isCompleted)
+                    .map(todo => <TodoListItem
+                            key={todo.id}
+                            task={todo}
+                            onDelete={deleteTask}
+                            onChange={handlerTaskUpdate}
+                        />
+                    )}
+            </div>
         </>
     )
 }
