@@ -1,9 +1,108 @@
-.taskUncompletedList {
-    display: flex;
-    align-items: flex-start;
+
+:root {
+    --primary-color: #0ea5e9;
+    --primary-secondary-color: #bae6fd;
+    --primary-foreground-color: white;
+
+    --default-background-color: #e5e5e5;
+    --default-secondary-color: #f5f5f4;
+
+    --danger-color: #f87171;
+}
+body {
+    font-size: 16px;
 }
 
-.taskCompletedList {
-    display: flex;
-    align-items: flex-start;
+button.primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-secondary-color);
+    color: var(--primary-foreground-color);
+}
+
+button.danger {
+    color: var(--danger-color);
+}
+
+table.task-list {
+    width: 100%;
+}
+
+table.task-list caption {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+table.task-list .task-checkbox-column {
+    width: 2rem;
+    text-align: center;
+}
+
+table.task-list .task-title-column {
+    text-align: left;
+}
+
+table.task-list .task-action-column {
+    width: 8rem;
+    text-align: center;
+}
+
+table.task-list th, table.task-list td {
+    padding: 0.5rem;
+}
+
+table.task-list thead tr {
+    background-color: var(--default-background-color);
+}
+
+table.task-list tbody tr:nth-child(even) {
+    background-color: var(--default-secondary-color);
+}
+
+table.task-list tbody tr:hover {
+    background-color: var(--primary-secondary-color);
+}
+
+table.task-list tbody tr:has(:checked) {
+    text-decoration: line-through;
+}
+
+table.task-list tbody td.task-title-column input, table.task-list tbody td.task-title-column div {
+    font-size: 1rem;
+    line-height: 1.2rem;
+}
+
+table.task-list tbody input {
+    margin: 0;
+    padding: 0;
+    background: none;
+    border-width: 0 0 1px 0;
+    width: 100%;
+}
+
+table.task-list tbody input:focus {
+    outline: 0;
+    border-width: 0 0 1px 0;
+    border-color: var(--primary-color);
+}
+
+table.task-list tbody button {
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+table.task-list > tfoot > tr > td {
+    border-top: 1px solid #ddd;
+    text-align: right;
+    padding: 0.5rem 0;
+}
+
+table.task-list > tfoot button {
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.5rem;
+    border-width: 1px;
+    outline: none;
+    box-shadow: none;
 }
