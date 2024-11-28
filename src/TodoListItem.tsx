@@ -8,33 +8,35 @@ export default function TodoListItem({task, onChange, onDelete}) {
 
     const itemId = task.id;
 
-    const handleChange = e => {
+    const handleChange = useCallback(e => {
         console.log('item value change', itemId, e.target.value);
         setValue(e.target.value);
-    }
+    }, []);
 
-    const handleKeyDown = e => {
+    const handleKeyDown = useCallback(e => {
         if (e.key === 'Enter') {
             console.log('handleKeyDown save', itemId, value);
             onChange({...task, text: value});
         }
-    }
+    }, [value, onChange]);
 
-    const handleBlur = () => {
+    const handleBlur = useCallback(() => {
         console.log('handleBlur save', itemId, value);
         setEditing(false);
         onChange({...task, text: value});
-    }
+    }, [value, onChange]);
 
-    const handleCheckboxChange = e => {
-        setEditing(!editing);
+    const handleCheckboxChange = useCallback(e => {
         onChange({...task, isCompleted: !task.isCompleted});
-    }
+    }, [onChange]);
 
-    const handleClick = () => {
-        if (editing) return;
+    const handleClick = useCallback(() => {
         setEditing(true);
-    }
+    }, []);
+
+    const handleDelete = useCallback(() => {
+        onDelete(itemId);
+    }, [onDelete]);
 
     const editingStyle = editing ? {} : {
         backgroundColor: '#f0f0f0', color: '#888',
@@ -55,7 +57,7 @@ export default function TodoListItem({task, onChange, onDelete}) {
                         style={{...editingStyle, width: '193px'}}/>
             }
 
-            <button onClick={() => onDelete(itemId)}>X</button>
+            <button onClick={handleDelete}>X</button>
         </>
     )
 }

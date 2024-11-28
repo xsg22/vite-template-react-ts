@@ -1,18 +1,19 @@
 import * as React from 'react';
+import {useCallback} from "react";
 
 
 export default function TodoAdd({addTask}) {
     const [value, setValue] = React.useState('');
 
-    const handlerAddTask = () => {
+    const handlerAddTask =  useCallback(() => {
         if (!value) return;
         addTask(value);
         setValue('');
-    };
+    }, [value]);
 
-    const handlerOnChange = (e) => {
+    const handlerOnChange = useCallback((e) => {
         setValue(e.target.value);
-    };
+    }, []);
 
     return (
         <div>
