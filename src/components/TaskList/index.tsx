@@ -1,12 +1,9 @@
+import TaskAdd from 'components/TaskAdd';
+import TaskItem from 'components/TaskItem';
 import * as React from 'react';
-import {useCallback} from "react";
-import TodoListItem from './TodoListItem';
-import TodoAdd from "./TodoAdd";
-import './TodoList.css';
+import { useCallback } from 'react';
 
-
-
-export default function TodoList() {
+export default (): React.JSX.Element => {
     const [todos, setTodos] = React.useState([])
 
     const addTask = useCallback((text) => {
@@ -28,12 +25,12 @@ export default function TodoList() {
 
     return (
         <>
-            <TodoAdd addTask={addTask} />
+            <TaskAdd addTask={addTask} />
             <div>
                 <p>未完成列表</p>
                 {todos.filter(todo => !todo.isCompleted)
                     .map(todo => (<li className="taskUncompletedList" key={todo.id}>
-                            <TodoListItem
+                        <TaskItem
                                 key={todo.id}
                                 task={todo}
                                 onDelete={deleteTask}
@@ -47,7 +44,7 @@ export default function TodoList() {
                 <p>完成列表</p>
                 {todos.filter(todo => todo.isCompleted)
                     .map(todo => (<li className="taskCompletedList" key={todo.id}>
-                            <TodoListItem
+                        <TaskItem
                                 key={todo.id}
                                 task={todo}
                                 onDelete={deleteTask}

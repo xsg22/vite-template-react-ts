@@ -1,11 +1,10 @@
 import * as React from 'react';
-import {useCallback} from "react";
+import { useCallback } from 'react';
 
-
-export default function TodoAdd({addTask}) {
+export default ({ addTask }): React.JSX.Element => {
     const [value, setValue] = React.useState('');
 
-    const handlerAddTask =  useCallback(() => {
+    const handlerAddTask = useCallback(() => {
         if (!value) return;
         addTask(value);
         setValue('');

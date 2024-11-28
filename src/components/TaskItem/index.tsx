@@ -1,8 +1,7 @@
-import * as React from "react";
-import {useCallback} from "react";
+import * as React from 'react';
+import { useCallback } from 'react';
 
-
-export default function TodoListItem({task, onChange, onDelete}) {
+export default ({ task, onChange, onDelete }): React.JSX.Element => {
     const [value, setValue] = React.useState(task.text);
     const [editing, setEditing] = React.useState(false);
 
@@ -44,7 +43,7 @@ export default function TodoListItem({task, onChange, onDelete}) {
 
     return (
         <>
-            <input type={"checkbox"} checked={task.isCompleted} onChange={handleCheckboxChange}/>
+            <input type="checkbox" checked={task.isCompleted} onChange={handleCheckboxChange}/>
             {
                 task.isCompleted ? <del><div style={{width: '200px', wordWrap: 'break-word'}}>{value}</div></del> :
                     <input
