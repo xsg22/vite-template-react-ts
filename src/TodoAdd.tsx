@@ -5,6 +5,7 @@ export default function TodoAdd({addTask}) {
     const [value, setValue] = React.useState('');
 
     const handlerAddTask = () => {
+        if (!value) return;
         addTask(value);
         setValue('');
     };
