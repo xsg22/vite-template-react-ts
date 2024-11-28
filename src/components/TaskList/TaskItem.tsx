@@ -43,7 +43,7 @@ export default memo(({ task, updateTask, deleteTask }: Props): React.JSX.Element
             <td className="text-center">
                 <input type="checkbox" checked={task.isCompleted} onChange={onCheckboxChange} />
             </td>
-            <td>
+            <td onDoubleClick={onTitleDoubleClick}>
                 {task.isEditing ? (
                     <input
                         type="text"
@@ -52,7 +52,7 @@ export default memo(({ task, updateTask, deleteTask }: Props): React.JSX.Element
                         onKeyDown={onTitleSubmit}
                     />
                 ) : (
-                    <div onDoubleClick={onTitleDoubleClick}>{task.title}</div>
+                    <div>{task.title}</div>
                 )}
             </td>
             <td className="text-center">
