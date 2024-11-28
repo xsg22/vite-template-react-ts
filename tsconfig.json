@@ -1,16 +1,16 @@
 {
   "compilerOptions": {
-    "baseUrl": "scr",
+    "baseUrl": "src",
     "jsx": "react",
     "lib": [
-      "es2015",
-      "dom",
-      "es2022.bigint"
+      "ESNext",
+      "DOM",
+      "ES2023.Array"
     ],
-    "target": "ES2022",
+    "target": "ESNext",
     "moduleResolution": "Node"
   },
   "include": [
-    "scr"
+    "src"
   ]
 }
