@@ -4,7 +4,7 @@ import {useCallback} from "react";
 
 export default function TodoListItem({task, onChange, onDelete}) {
     const [value, setValue] = React.useState(task.text);
-    const [editing, setEditing] = React.useState(true);
+    const [editing, setEditing] = React.useState(false);
 
     const itemId = task.id;
 

@@ -1,16 +1,18 @@
 import * as React from 'react';
 import {useCallback} from "react";
 import TodoListItem from './TodoListItem';
+import TodoAdd from "./TodoAdd";
+import './TodoList.css';
 
 
 
 export default function TodoList() {
     const [todos, setTodos] = React.useState([])
 
-    const addTask = () => {
+    const addTask = (text) => {
         const nextId = todos.length > 0 ? todos[todos.length - 1].id + 1 : 1;
-        console.log('list add after', [...todos, {id: nextId, text: '', isCompleted: false}])
-        setTodos([...todos, {id: nextId, text: '', isCompleted: false}]);
+        console.log('list add after', [...todos, {id: nextId, text: text, isCompleted: false}])
+        setTodos([...todos, {id: nextId, text: text, isCompleted: false}]);
     }
 
     const deleteTask = id => {
@@ -26,32 +28,32 @@ export default function TodoList() {
 
     return (
         <>
-            <button onClick={addTask}>Add Task</button>
+            <TodoAdd addTask={addTask} />
             <div>
                 <p>未完成列表</p>
                 {todos.filter(todo => !todo.isCompleted)
-                    .map(todo => (<ul className="taskList">
+                    .map(todo => (<li className="taskUncompletedList" key={todo.id}>
                             <TodoListItem
                                 key={todo.id}
                                 task={todo}
                                 onDelete={deleteTask}
                                 onChange={handlerTaskUpdate}
                             />
-                        </ul>)
+                        </li>)
                     )}
             </div>
 
             <div>
                 <p>完成列表</p>
                 {todos.filter(todo => todo.isCompleted)
-                    .map(todo => (<ul style={{display: 'flex', alignItems: 'flex-start'}}>
+                    .map(todo => (<li className="taskCompletedList" key={todo.id}>
                             <TodoListItem
                                 key={todo.id}
                                 task={todo}
                                 onDelete={deleteTask}
                                 onChange={handlerTaskUpdate}
                             />
-                        </ul>)
+                        </li>)
                     )}
             </div>
         </>

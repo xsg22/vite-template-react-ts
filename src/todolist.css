@@ -1,0 +1,9 @@
+.taskUncompletedList {
+    display: flex;
+    align-items: flex-start;
+}
+
+.taskCompletedList {
+    display: flex;
+    align-items: flex-start;
+}
