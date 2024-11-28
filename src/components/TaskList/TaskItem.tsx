@@ -39,20 +39,25 @@ export default memo(({ task, updateTask, deleteTask }: Props): React.JSX.Element
     }, [task.id, deleteTask]);
 
     return (
-        <tr className="task-item">
-            <td className="task-checkbox-column">
+        <tr className="even:bg-neutral-100 hover:bg-sky-100 *:p-2">
+            <td className="text-center">
                 <input type="checkbox" checked={task.isCompleted} onChange={onCheckboxChange} />
             </td>
-            <td className="task-title-column">
+            <td>
                 {task.isEditing ? (
-                    <input type="text" defaultValue={task.title} onKeyDown={onTitleSubmit} />
+                    <input
+                        type="text"
+                        className="w-full bg-transparent border-b border-b-sky-500 focus:outline-0"
+                        defaultValue={task.title}
+                        onKeyDown={onTitleSubmit}
+                    />
                 ) : (
                     <div onDoubleClick={onTitleDoubleClick}>{task.title}</div>
                 )}
             </td>
-            <td className="task-action-column">
+            <td className="text-center">
                 <div>
-                    <button className="danger" onClick={onDeleteClick}>删除</button>
+                    <button className="text-red-400" onClick={onDeleteClick}>删除</button>
                 </div>
             </td>
         </tr>
