@@ -52,7 +52,7 @@ export default memo(({ task, updateTask, deleteTask }: Props): React.JSX.Element
                         onKeyDown={onTitleSubmit}
                     />
                 ) : (
-                    <div>{task.title}</div>
+                    <div className={task.isCompleted ? 'line-through' : ''}>{task.title}</div>
                 )}
             </td>
             <td className="text-center">
