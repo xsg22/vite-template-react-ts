@@ -4,10 +4,9 @@
     "jsx": "react",
     "lib": [
       "ESNext",
-      "DOM",
-      "ES2023.Array"
+      "DOM"
     ],
-    "target": "ESNext",
+    "target": "ES6",
     "moduleResolution": "Node"
   },
   "include": [
