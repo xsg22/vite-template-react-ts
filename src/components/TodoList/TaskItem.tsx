@@ -1,6 +1,7 @@
 import * as React from "react";
 import {type Task} from "../../snapshots/tasks";
 import {useCallback} from "react";
+import {Trash2} from "lucide-react";
 
 type Props = {
     task: Task,
@@ -46,11 +47,13 @@ export default ({task, updateTask, deleteTask}: Props) => {
             {
                 !task.isEditing ?
                     <p className={'basis-5/6 break-all' + completeStyle} onClick={handlerOnClick}>{task.title}</p> :
-                    <input className={'basis-5/6 break-all' + completeStyle} type={"text"} value={value} onKeyDown={handleKeyDown}
+                    <input className={'basis-5/6 break-all' + completeStyle} type={"text"} value={value}
+                           onKeyDown={handleKeyDown}
                            onChange={handlerOnChange} autoFocus={task.isEditing}/>
             }
-            <button className='basis-1/12 text-red-400 rounded-full border-2 bg-white size-7'
-                    onClick={handlerDeleteTask}>X
+            <button className='size-7'
+                    onClick={handlerDeleteTask}>
+                <Trash2 className={'text-gray-400 hover:text-red-500'} size={20}/>
             </button>
         </>
     )
