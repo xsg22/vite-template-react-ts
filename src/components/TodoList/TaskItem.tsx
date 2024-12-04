@@ -35,7 +35,9 @@ export default ({task, updateTask, deleteTask}: Props) => {
     }, [task]);
 
     const handlerDeleteTask = useCallback(() => {
-        deleteTask(task.id);
+        if (confirm('确认删除吗？')) {
+            deleteTask(task.id);
+        }
     }, [task]);
 
     const completeStyle = task.isCompleted ? ' text-gray-400' : '';
